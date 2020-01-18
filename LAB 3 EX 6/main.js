@@ -12,102 +12,117 @@ let temp = [];
 let tempSort = temp;
 
 document.getElementById('start').addEventListener('click', function () {
-	FormArray(document.getElementById('days').value);
+    FormArray(document.getElementById('days').value);
 });
 
 document.getElementById('startFindMin').addEventListener('click', function () {
-	FindMin();
+    FindMin();
 });
 
 document.getElementById('startFindMax').addEventListener('click', function () {
-	FindMax();
+    FindMax();
 });
 
 document.getElementById('startArithmetic').addEventListener('click', function () {
-  ArithmeticMean();
+    ArithmeticMean();
 });
 
 document.getElementById('startSorting').addEventListener('click', function () {
-  SortTemp();
+    SortTemp();
 });
 
-document.getElementById('startAdding').addEventListener('click',function () {
-  AddElements(document.getElementById('numberToAdd').value);
+document.getElementById('startAdding').addEventListener('click', function () {
+    AddElements(document.getElementById('numberToAdd').value);
 });
 
 document.getElementById('startRemoving').addEventListener('click', function () {
-  RemoveElement(document.getElementById('positionToRemove').value)
+    RemoveElement(document.getElementById('positionToRemove').value)
 });
 
 document.getElementById('startAveraging').addEventListener('click', function () {
-  DaysBellowAverage();
+    DaysBellowAverage();
 });
 
+document.getElementById('startSummarizing').addEventListener('click', function () {
+    ShowResults();
+})
+
 const FormArray = (number) => {
-	for (let i = 0; i < number; i++) {
-		temp.push(Math.floor(Math.random() * 22) - 7); // Temp values between [-7 .. +15]
-	}
-  console.log(temp);
-	return temp;
+    for (let i = 0; i < number; i++) {
+        temp.push(Math.floor(Math.random() * 23) - 7); // Temp values between [-7 .. +15]
+    }
+    console.log(temp);
+    return temp;
 };
 
 const FindMin = () => {
-	let min = temp[temp.length-1];
-	temp.forEach(number => {
-		if (number <= min) {
-			min = temp[number]
-		}
-	});
-	console.log(min);
-	return min;
+    let min = temp[0];
+    temp.forEach(number => {
+        if (number <= min) {
+            min = number
+        }
+    });
+    console.log(min);
+    return min;
 };
 
 const FindMax = () => {
-	let max = temp[0];
-	temp.forEach(number => {
-		if (number >= max) { }
-		max = temp[number]
-	});
-	console.log(max);
-	return max;
+    let max = temp[0];
+    temp.forEach(number => {
+       if (number > max) {
+           max = number
+       }
+    });
+    console.log(max);
+    return max;
 };
 
 const ArithmeticMean = () => {
-  let sum = 0;
-  temp.forEach(number => {
-    sum += number;
-  });
-  console.log(Math.round(sum / temp.length));
-  return Math.round(sum / temp.length);
+    let sum = 0;
+    temp.forEach(number => {
+        sum += number;
+    });
+    console.log(Number(Math.round(sum / temp.length)));
+    return Number(Math.round(sum / temp.length));
 };
 
 const SortTemp = () => {
-  tempSort.sort(function (a, b) {
-    return a - b
-  });
-  console.log(tempSort);
-  return tempSort;
+    tempSort.sort(function (a, b) {
+        return a - b
+    });
+    console.log(tempSort);
+    return tempSort;
 };
 
 const AddElements = (numberToAdd) => {
-  temp.push(numberToAdd);
-  console.log(temp);
-  return temp;
+    temp.push(Number(numberToAdd));
+    console.log(temp);
+    return temp;
 };
 
 const RemoveElement = (number) => {
-  temp.splice(number ,1);
-  console.log(temp);
-  return temp;
+    temp.splice(number, 1);
+    console.log(temp);
+    return temp;
 };
 
 const DaysBellowAverage = () => {
-  let count = 0;
-  temp.forEach(number => {
-    if (number < ArithmeticMean()) {
-      count++
-    }
-  });
-  console.log(count);
-  return count;
+    let count = 0;
+    temp.forEach(number => {
+        if (number < ArithmeticMean()) {
+            count++
+        }
+    });
+    console.log(count);
+    return count;
+};
+
+const ShowResults = () => {
+    document.getElementById('min').innerText = `Minimum temperature is ${FindMin()}`;
+    document.getElementById('max').innerText = `Maximum temperature is ${FindMax()}`;
+    document.getElementById('arithmetic').innerHTML = `The arithmetical mean is ${ArithmeticMean()}`;
+    document.getElementById('sort').innerHTML = `Sorted array ${SortTemp()}`;
+    document.getElementById('add').innerHTML = `Array with added elements ${AddElements()}`;
+    document.getElementById('remove').innerHTML = `Array without elements ${RemoveElement()}`;
+    document.getElementById('count').innerHTML = `The amount of days with low temperature ${DaysBellowAverage()}`;
 };
