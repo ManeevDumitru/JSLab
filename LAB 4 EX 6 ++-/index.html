@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="inputs">
+    1a. Write number of rows <input type="number" id="n">
+    <br> <br>
+    1b. Write the number of cols <input type="number" id="m">
+    <br><br>
+    2. Create table
+    <button id="start">Click</button>
+    <br> <br>
+    3. Do the calculations <button id="startCalculations">Start Calculations</button>
+    <br> <br>
+    4a. Calculate Min
+    <button id="startMin">Start minimum</button>
+    <br> <br>
+    4b. Calculate Max
+    <button id="startMax">Start maximum</button>
+    <br><br>
+    5a. Write the nr of rows 1 <input type="number" id="colA">
+    <br> <br>
+    5b. Write the nr of rows 2 <input type="number" id="colB">
+    <br> <br>
+    5c. Then Press button to interchange rows <button id="startChange">Click</button>
+    <br> <br>
+    6. Add row <button id="startAdding">Add row</button>
+    <br> <br>
+    7. Generate Table <button id="startGenerate">Generate Table</button>
+</div>
+<div class="results">
+
+</div>
+<script src="main.js"></script>
+</body>
+</html>
+
+<!--
+const generateArray = (rows, columns) => {
+  let mass = Create2DArray(rows);
+  q = 1;
+  for (let i = 0; i <= rows; i++) {
+    let k = 1;
+    for (j = 0; j <= columns; j++) {
+      mass[i][j] = k;
+      k += q;
+    }
+    q++;
+  }
+  return mass;
+}
